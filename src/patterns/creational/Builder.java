@@ -1,3 +1,4 @@
+
 // O padrão Builder (Criacional) ajuda a criar objetos complexos passo a passo.
 // É muito útil quando um objeto tem muitos atributos (especialmente opcionais)
 // e criar um construtor com dezenas de parâmetros ficaria feio e difícil de ler (chamado de Telescoping Constructor).
@@ -24,7 +25,8 @@ class Computador {
         this.temResfriamentoAgua = builder.temResfriamentoAgua;
     }
 
-    // A classe Builder fica aninhada e estática (Esse é o jeito mais moderno e seguro no Java)
+    // A classe Builder fica aninhada e estática (Esse é o jeito mais moderno e
+    // seguro no Java)
     public static class ComputadorBuilder {
         // Obrigatórios (Passados no construtor do Builder)
         private String processador;
@@ -90,7 +92,8 @@ public class Builder {
 
         System.out.println("\n------------------------------------------------\n");
 
-        // Construindo um PC Gamer super equipado (usando encadeamento de métodos - Fluent Interface)
+        // Construindo um PC Gamer super equipado (usando encadeamento de métodos -
+        // Fluent Interface)
         System.out.println("2. Montando PC Gamer (Com opcionais):");
         Computador pcGamer = new Computador.ComputadorBuilder("AMD Ryzen 9", 32, 2000)
                 .comPlacaDeVideo("RTX 4090 24GB")

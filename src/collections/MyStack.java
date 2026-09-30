@@ -25,30 +25,29 @@ public class MyStack<E> {
 
     // Método PUSH: Empilha um novo elemento
     public void push(E element) {
-        // TODO: Implemente a inserção no topo
-        // 1. Crie um novo Node com o elemento.
-        // 2. O 'next' desse novo nó tem que apontar para quem era o 'top' antigo.
-        //    (O novo prato fica em cima do prato que já estava lá)
-        // 3. Atualize a variável 'top' para ser esse novo nó.
-        // 4. Aumente o size.
+        Node<E> newNode = new Node<>(element);
+        newNode.next = top;
+        top = newNode;
+        size++;
     }
 
     // Método POP: Remove e retorna o elemento do topo
     public E pop() {
-        // TODO: Implemente a remoção do topo
-        // 1. Verifique se a pilha está vazia (size == 0). Se sim, pode jogar um erro (ex: EmptyStackException ou RuntimeException).
-        // 2. Guarde o elemento que está no 'top' em uma variável (para poder retornar depois).
-        // 3. Faça a variável 'top' apontar para o 'top.next' (ou seja, o prato de baixo).
-        // 4. Diminua o size.
-        // 5. Retorne o elemento guardado.
-        return null;
+        if (isEmpty()) {
+            throw new RuntimeException("Stack is empty");
+        }
+        E element = top.element;
+        top = top.next;
+        size--;
+        return element;
     }
 
     // Método PEEK: Apenas "espia" o topo, sem remover
     public E peek() {
-        // TODO: Retorne o elemento do 'top', mas sem mexer na pilha.
-        // (Lembre-se de checar se está vazia primeiro!)
-        return null;
+        if (isEmpty()) {
+            throw new RuntimeException("Stack is empty");
+        }
+        return top.element;
     }
 
     public boolean isEmpty() {

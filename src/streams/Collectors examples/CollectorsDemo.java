@@ -23,7 +23,7 @@ class Funcionario {
 
 public class CollectorsDemo {
     public static void main(String[] args) {
-        System.out.println("--- 🚀 Testando Java Stream Collectors ---\n");
+        System.out.println("--- Testando Java Stream Collectors ---\n");
 
         // Nossa base de dados simulada
         List<Funcionario> funcionarios = Arrays.asList(

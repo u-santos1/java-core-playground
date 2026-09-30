@@ -31,16 +31,18 @@ class NotificacaoPush implements Notificacao {
 }
 
 // 3. A Fábrica (Factory)
-// Centraliza toda a regra de QUAL objeto criar. Se amanhã criarmos uma NotificacaoWhatsApp,
-// só precisamos adicionar 2 linhas AQUI dentro da fábrica. O resto do sistema (Cliente) continua intacto.
+// Centraliza toda a regra de QUAL objeto criar. Se amanhã criarmos uma
+// NotificacaoWhatsApp,
+// só precisamos adicionar 2 linhas AQUI dentro da fábrica. O resto do sistema
+// (Cliente) continua intacto.
 class NotificacaoFactory {
-    
+
     // Método estático que fabrica o objeto baseado em um texto
     public static Notificacao criarNotificacao(String tipo) {
         if (tipo == null || tipo.isEmpty()) {
             return null;
         }
-        
+
         switch (tipo.toUpperCase()) {
             case "EMAIL":
                 return new NotificacaoEmail();
@@ -50,7 +52,7 @@ class NotificacaoFactory {
                 return new NotificacaoPush();
             default:
                 // Se pedir algo que a fábrica não sabe fazer, ela avisa.
-                throw new IllegalArgumentException("❌ Erro da Fábrica: Tipo de notificação desconhecido -> " + tipo);
+                throw new IllegalArgumentException(" Erro da Fábrica: Tipo de notificação desconhecido -> " + tipo);
         }
     }
 }
@@ -60,10 +62,12 @@ public class Factory {
     public static void main(String[] args) {
         System.out.println("--- Testando o Padrão Factory ---\n");
 
-        // Repare na "Mágica": O cliente NÃO USA a palavra "new" para criar o Email, SMS ou Push.
-        // Ele não precisa saber qual é o nome exato da classe (se é NotificacaoEmail ou EmailNotification).
+        // Repare na "Mágica": O cliente NÃO USA a palavra "new" para criar o Email, SMS
+        // ou Push.
+        // Ele não precisa saber qual é o nome exato da classe (se é NotificacaoEmail ou
+        // EmailNotification).
         // Ele apenas grita para a fábrica: "ME DÊ UM OBJETO DE EMAIL!"
-        
+
         System.out.println("Cenário 1: O sistema precisa enviar um Email");
         Notificacao notif1 = NotificacaoFactory.criarNotificacao("EMAIL");
         notif1.enviar("Bem-vindo ao nosso sistema!");
@@ -75,7 +79,7 @@ public class Factory {
         System.out.println("\nCenário 3: O sistema precisa enviar Push no Celular");
         Notificacao notif3 = NotificacaoFactory.criarNotificacao("PUSH");
         notif3.enviar("Você tem uma nova mensagem de Maria.");
-        
+
         // Testando a segurança (pedindo um tipo que a fábrica ainda não produz)
         System.out.println("\nCenário 4: Tentando criar um tipo inexistente (WhatsApp)");
         try {

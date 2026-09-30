@@ -14,7 +14,7 @@ public class MyLinkedList<E> {
 
     private Node<E> head; // Primeiro elemento
     private Node<E> tail; // Último elemento
-    private int size;     // Tamanho da lista
+    private int size; // Tamanho da lista
 
     // Construtor: Inicializa a lista vazia
     public MyLinkedList() {
@@ -38,13 +38,42 @@ public class MyLinkedList<E> {
     }
 
     public E get(int index) {
-        // TODO: Implemente a busca
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Indece invalido " + index);
+        }
+        Node<E> current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current.element;
     }
 
     public E remove(int index) {
-        // TODO: Implemente a remoção
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Indece invalido " + index);
+        }
+        E removedElement;
+
+        if (index == 0) {
+            removedElement = head.element;
+            head = head.next;
+            if (size == 1) {
+                tail = null;
+            }
+        } else {
+                Node<E> previous = head;
+                for (int i = 0; i < index - 1; i++) {
+                    previous = previous.next;
+                }
+                removedElement = previous.next.element;
+                previous.next = previous.next.next;
+
+                if (index == size - 1) {
+                    tail = previous;
+                }
+        }
+        size--;
+        return removedElement;
     }
 
     public int size() {

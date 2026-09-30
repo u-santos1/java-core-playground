@@ -1,3 +1,5 @@
+
+package streams;
 import java.util.Optional;
 
 class Usuario {
@@ -36,7 +38,7 @@ public class OptionalExamples {
     }
 
     public static void main(String[] args) {
-        System.out.println("--- 🛡️ Testando Java Optional ---\n");
+        System.out.println("---Testando Java Optional ---\n");
 
         // -------------------------------------------------------------
         // Cenário 1: Tudo perfeito (Usuário existe e tem email)
@@ -82,7 +84,7 @@ public class OptionalExamples {
         // .orElseThrow -> "Se a caixa estiver vazia, pare o sistema e estoure um Erro imediatamente!"
         try {
             System.out.println("Tentando forçar a busca do ID 99...");
-            optUser99.orElseThrow(() -> new IllegalArgumentException("❌ ERRO GRAVE: O Usuário não existe!"));
+            optUser99.orElseThrow(() -> new IllegalArgumentException(" ERRO GRAVE: O Usuário não existe!"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -16,19 +16,20 @@ public class MyArrayList<E> {
 
     public void add(E element) {
     
-        if (size == elements.length){
+        if (size == elements.length) {
             int novaCapacidade = elements.length * 2;
             Object[] arrayMaior = new Object[novaCapacidade];
 
-            for (int i = 0; i < elements.length; i++){
-                arrayMaior[i] = elements[i];
-            }
-        elements = arrayMaior;
+            // Usando System.arraycopy (mais rápido e nativo) em vez de laço for
+            System.arraycopy(elements, 0, arrayMaior, 0, elements.length);
+            
+            elements = arrayMaior;
         }
         elements[size] = element;
         size++;
     }
 
+    @SuppressWarnings("unchecked")
     public E get(int index) {
         
         if (index < 0 || index >= size){
@@ -37,16 +38,22 @@ public class MyArrayList<E> {
         return (E) elements[index];
     }
 
+    @SuppressWarnings("unchecked")
     public E remove(int index) {
         
         if (index < 0 || index >= size){
             throw new IndexOutOfBoundsException("Índice fora dos limites: " + index);
         }
         E removeElement = (E)elements[index];
-        for (int i = index; i < size - 1; i++){
-            elements[i] = elements[i + 1];
+        
+        // Calculando quantos itens precisam ser deslocados
+        int numMoved = size - index - 1;
+        if (numMoved > 0) {
+            // Deslocando (shift) os itens para a esquerda usando System.arraycopy
+            System.arraycopy(elements, index + 1, elements, index, numMoved);
         }
-        elements[size - 1] = null;
+        
+        elements[size - 1] = null; // Evitando Memory Leak
         size--;
 
         return removeElement;
